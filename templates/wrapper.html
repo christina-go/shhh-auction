@@ -1,0 +1,80 @@
+<!doctype HTML>
+<html>
+    <head>
+        <link href="./styles.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <style>
+        .navigation-left {
+            align-content: left;
+            display: inline-block;
+            margin: 10px;   
+        }
+        .navigation-right {
+            float: right;                
+            display: inline-block;
+            margin: 10px;   
+        }
+        .input-field {
+            margin: 50px;
+            display: block;
+            padding-top: 20px;
+            text-align: left;
+            box-flex: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        .error {
+            list-style: none;
+            color: red;
+        }
+        ul {
+            list-style: none;
+        }
+        h2 {
+            font-weight: bold;
+        }
+        .byline {
+            font-style:italic;
+        }
+        .display_message {
+            margin: 50px;
+        }
+        </style>
+        <title>{{title}}</title>
+
+    </head>
+    <body>
+    <div class="navigation-left" >
+        <a href='/index'>Home</a>
+    </div>
+    <div class="navigation-left" >
+        <a href='/auctions'>All Auctions</a>
+    </div>
+    <div class="navigation-left" >
+        <a href='/newauction'>List an Item</a>
+    </div>
+    <div class="navigation-right" >
+        <a href='/logout'>Log Out</a>
+    </div>
+    <div class="navigation-right" >
+        <a href='/login'>Log In</a>
+    </div> 
+
+<div>
+    <h1 class="page-title">{{title}}</h1>
+</div>
+
+    {% with messages = get_flashed_messages() %}
+        <ul>
+        {% for message in messages %}
+            <li class="error">{{message}}</li>
+        {% endfor %}
+        </ul>
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
