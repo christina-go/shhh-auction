@@ -1,0 +1,29 @@
+{% extends 'wrapper.html'%}
+
+{% block content %}
+<div class="input-field">
+    <form method='post'>
+        <div class="form-group">
+            <div>
+                <label>
+                    Username:
+                    <input class="form-control" type="text" name='username' required/>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label class='input_field'>
+                    Password:
+                        <input class='form-control' name='password' type='password' required/></textArea>
+                </label>
+            </div>
+            <br>
+                <label class="input_field">
+                    <input class="btn btn-default" type="submit" value='Sign Up'  />
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

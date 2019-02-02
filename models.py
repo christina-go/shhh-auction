@@ -26,3 +26,5 @@ class Bid(db.Model):
         self.amount = amount
         self.auction_id = auction_id
         self.owner = owner
+
+        

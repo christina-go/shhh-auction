@@ -6,8 +6,23 @@ from models import Auction, Bid
 
 
 @app.route('/')
+def redirect_index():
+    return redirect('/index')
+
+@app.route('/index')
 def index():
-    return "Hello World"
+    return render_template('index.html')    
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')  
+
+#TODO: username and password validation
+# database 
+
+@app.route('/new_item')    
+def new_item():
+    return render_template('new_item.html')
 
 
 @app.route('/auctions')
@@ -40,6 +55,7 @@ def single_auction():
     auction = Auction.query.get(auction_id)
 
     return render_template('auction.html', auction=auction)
+ 
 
 
 if __name__ == '__main__':
