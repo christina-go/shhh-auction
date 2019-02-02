@@ -1,0 +1,47 @@
+{% extends 'wrapper.html'%}
+
+{% block content %}
+<div class="input-field">
+    <form method='post'>
+        <div class="form-group">
+            <div>
+                <label>
+                    Title:
+                    <input class="form-control" type="text" name='title' required/>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label class='input_field'>
+                    Auction Start:
+                        <input class='form-control' name='auction_start' type='datetime-local' required/></textArea>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label class='input_field'>
+                    Auction End:
+                        <input class='form-control' name='auction_end' type='datetime-local' required/></textArea>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label>
+                    Please upload an image:
+                </label>
+            </div>   
+            <div>
+                <input type='file' name='item_image' accept='image/*'>
+            </div>   
+            <br>
+
+            <div>
+                <label class="input_field">
+                    <input class="btn btn-default" type="submit" value='Create Auction'  />
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

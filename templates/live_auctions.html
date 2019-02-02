@@ -1,0 +1,18 @@
+{% extends 'wrapper.html' %}
+
+{% block content %}
+
+{% if all_auctions|length == 0 %}
+    
+<p class="display-message">No live auctions</p>
+
+{% else %}
+    <ul>
+        {% for auction in all_auctions %}
+        <li><a href="./auction?id={{auction.id}}"> {{auction.title}} </a></li>
+        {% endfor %}
+    </ul>   
+
+{% endif %}
+
+{% endblock %}
