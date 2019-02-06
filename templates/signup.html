@@ -1,29 +1,29 @@
-{% extends 'wrapper.html'%}
+{% extends "wrapper.html" %}
 
 {% block content %}
 <div class="input-field">
-    <form method='post'>
-        <div class="form-group">
-            <div>
-                <label>
-                    Username:
-                    <input class="form-control" type="text" name='username' required/>
-                </label>
-            </div>
-            <br>
-            <div>
-                <label class='input_field'>
-                    Password:
-                        <input class='form-control' name='password' type='password' required/></textArea>
-                </label>
-            </div>
-            <br>
-                <label class="input_field">
-                    <input class="btn btn-default" type="submit" value='Sign Up'  />
-                </label>
-            </div>
-        </div>
+    <form action="/signup" method="post">
+        <table>
+            <tr>
+                <td><label for="username">Username</label></td>
+                <td>
+                    <input name="username" type="username" value="{{ username }}" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td>
+                    <input name="password" type="password" required>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="verify">Verify Password</label></td>
+                <td>
+                    <input name="verify" type="password" required>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Sign Up for Shhh">
     </form>
 </div>
-
 {% endblock %}

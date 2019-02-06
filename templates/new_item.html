@@ -14,14 +14,21 @@
             <div>
                 <label class='input_field'>
                     Auction Start:
-                        <input class='form-control' name='auction_start' type='datetime-local' required/></textArea>
+                        <input class='form-control' name='auction_start' type='text' required/>
                 </label>
             </div>
             <br>
             <div>
                 <label class='input_field'>
                     Auction End:
-                        <input class='form-control' name='auction_end' type='datetime-local' required/></textArea>
+                        <input class='form-control' name='auction_end' type='text' required/>
+                </label>
+            </div>
+            <br>
+            <div>
+                <label class='input_field'>
+                    Description:
+                    <textArea class="form-control" rows="5" cols="100" name='description' required></textArea>
                 </label>
             </div>
             <br>
@@ -30,8 +37,9 @@
                     Please upload an image:
                 </label>
             </div>   
+            <br>
             <div>
-                <input type='file' name='item_image' accept='image/*'>
+                <input type='file' name='item_image' accept='image/*' />
             </div>   
             <br>
 
