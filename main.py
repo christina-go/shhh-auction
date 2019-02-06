@@ -5,6 +5,7 @@ from app import app, db
 from models import Item, Bid, User
 from helper_functions import input_validation, password_match
 
+
 @app.before_request
 def require_login():
     allowed_routes = ['login', 'signup']
@@ -12,13 +13,16 @@ def require_login():
         flash("You must be logged in to continue")
         return redirect('/login')
 
+
 @app.route('/')
 def redirect_index():
     return redirect('/index')
 
+
 @app.route('/index')
 def index():
     return render_template('index.html')    
+
 
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
@@ -51,6 +55,7 @@ def signup():
 
     return render_template('signup.html', title="Register to Shhh") 
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -72,6 +77,7 @@ def login():
             return redirect('/index')
 
     return render_template('login.html', title="Log In to Shhh")     
+
 
 @app.route('/new_item', methods=['POST', 'GET'])    
 def new_item():
@@ -141,10 +147,17 @@ def list_bids():
             auctions_list = []
             auctions_list.append(auction.title)
 
-    #TODO: how do i get the item name to display in the html
-    # do i have to do it here or in the template?
-
     return render_template('bids.html', bids=bids, auctions_list=auctions_list)
+
+
+@app.route('/my_items')
+def my_items():
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    
+    items = Item.query.filter_by(owner_id=user.id).all()
+
+    return render_template('my_items.html', items=items)
 
 
 @app.route('/logout')
