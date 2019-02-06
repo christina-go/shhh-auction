@@ -106,10 +106,6 @@ def single_auction():
     username = session['username']
     user = User.query.filter_by(username=username).first()
 
-    # TODO: detect username from session then query database for the user id (this
-    # becomes part of the Bid object)
-
-
     if request.method == 'POST':
         amount = request.form['bid_amount']
         item_id = request.form['item-id']
@@ -129,6 +125,27 @@ def single_auction():
     item = Item.query.get(item_id)
 
     return render_template('auction.html', item=item)
+
+
+@app.route('/bids')
+def list_bids():
+    username = session['username']
+    user = User.query.filter_by(username=username).first()
+    
+    bids = Bid.query.filter_by(owner_id=user.id).all()
+
+    for bid in bids:
+        auctions = Item.query.filter_by(id=bid.item_id)
+
+        for auction in auctions:
+            auctions_list = []
+            auctions_list.append(auction.title)
+
+    #TODO: how do i get the item name to display in the html
+    # do i have to do it here or in the template?
+
+    return render_template('bids.html', bids=bids, auctions_list=auctions_list)
+
 
 @app.route('/logout')
 def logout():

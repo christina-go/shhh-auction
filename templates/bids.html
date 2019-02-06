@@ -1,0 +1,25 @@
+{% extends 'wrapper.html' %}
+
+{% block content %}
+
+{% if bids|length == 0 %}
+    
+<p class="display-message">No bids placed</p>
+
+{% else %}
+
+<ul>
+    {% for auction in auctions_list %}
+    <li>{{auction}}</li>
+    <ul>
+        {% for bid in bids %}
+        <li> {{bid.amount}}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</ul>
+
+
+{% endif %}
+
+{% endblock %}
