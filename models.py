@@ -35,7 +35,7 @@ class Bid(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer)
-    item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
+    item_id = db.Column(db.Integer, db.ForeignKey('item.title'))
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, amount, item_id, owner_id):
