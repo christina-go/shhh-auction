@@ -1,0 +1,22 @@
+{% extends 'wrapper.html' %}
+
+{% block content %}
+
+{% if items|length == 0 %}
+    
+<p class="display-message">No items listed</p>
+
+{% else %}
+
+<ul>
+    {% for item in items %}
+    <li>Auction Title: {{item.title}}</li>
+    <li>Auction Start: {{item.start}}</li>
+    <li>Auction Stop: {{item.stop}}</li>
+    <li>Auction Description: {{item.description}}</li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+
+{% endblock %}
