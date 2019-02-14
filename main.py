@@ -21,7 +21,8 @@ def redirect_index():
 
 @app.route('/index')
 def index():
-    return render_template('index.html')    
+    username = session['username']
+    return render_template('index.html', username=username)    
 
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -140,14 +141,19 @@ def list_bids():
     
     bids = Bid.query.filter_by(owner_id=user.id).all()
 
-    for bid in bids:
-        auctions = Item.query.filter_by(id=bid.item_id)
+    if not bids:
+       bids == 0
+       return render_template('bids.html', bids=bids)
 
-        for auction in auctions:
-            auctions_list = []
-            auctions_list.append(auction.title)
+    else:  
+        for bid in bids:
+            auctions = Item.query.filter_by(id=bid.item_id)
 
-    return render_template('bids.html', bids=bids, auctions_list=auctions_list)
+            for auction in auctions:
+                auctions_list = []
+                auctions_list.append(auction.title)
+
+            return render_template('bids.html', bids=bids, auctions_list=auctions_list)
 
 
 @app.route('/my_items')
