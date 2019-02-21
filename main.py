@@ -115,7 +115,7 @@ def single_auction():
 
     if request.method == 'POST':
         amount = request.form['bid_amount']
-        item_id = request.form['item-id']
+        item_id = request.form['item_id']
         owner_id = user.id
 
         new_bid = Bid(amount, item_id, owner_id)
