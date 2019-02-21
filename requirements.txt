@@ -2,5 +2,4 @@ Flask
 Gunicorn
 SQLALchemy
 flask_sqlalchemy
-Jinja
 pymysql
