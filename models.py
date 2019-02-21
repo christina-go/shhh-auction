@@ -38,13 +38,11 @@ class Bid(db.Model):
     amount = db.Column(db.Integer)
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    timestamp = db.Column(db.DateTime,  default=db.func.current_timestamp())
 
     def __init__(self, amount, item_id, owner_id, timestamp):
         self.amount = amount
         self.item_id = item_id
         self.owner_id = owner_id
-        self.timestamp = timestamp
 
 
         
