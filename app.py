@@ -6,3 +6,4 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://christina:r3!gn$AL3M@localhost/shhh_auction'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
+app.secret_key = '$al3mr3!gn$FEB'
