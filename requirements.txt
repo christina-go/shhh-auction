@@ -3,3 +3,4 @@ Gunicorn
 SQLALchemy
 flask_sqlalchemy
 pymysql
+psycopg2
