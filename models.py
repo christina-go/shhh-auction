@@ -2,6 +2,7 @@ from app import app, db
 from datetime import datetime
 
 class User(db.Model):
+    __tablename__ = users
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
@@ -15,6 +16,7 @@ class User(db.Model):
 
 
 class Item(db.Model):
+     __tablename__ = items
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
@@ -33,13 +35,14 @@ class Item(db.Model):
 
 
 class Bid(db.Model):
+    __tablename__ = bids
 
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer)
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, amount, item_id, owner_id, timestamp):
+    def __init__(self, amount, item_id, owner_id):
         self.amount = amount
         self.item_id = item_id
         self.owner_id = owner_id
