@@ -2,8 +2,6 @@ from app import app, db
 from datetime import datetime
 
 class User(db.Model):
-    __tablename__ = users
-
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
@@ -16,8 +14,6 @@ class User(db.Model):
 
 
 class Item(db.Model):
-     __tablename__ = items
-
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
     start = db.Column(db.DateTime, nullable = False)
@@ -35,8 +31,6 @@ class Item(db.Model):
 
 
 class Bid(db.Model):
-    __tablename__ = bids
-
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer)
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
