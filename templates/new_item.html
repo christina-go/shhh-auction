@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="input-field">
-    <form method='post'>
+    <form method='post' action='/new_item' enctype="multipart/form-data" >
         <div class="form-group">
             <div>
                 <label>
@@ -39,7 +39,7 @@
             </div>   
             <br>
             <div>
-                <input type='file' name='item_image' accept='image/png, image/jpeg' />
+                <input type='file' name='item_image' accept='image/png, image/jpeg'/>
             </div>   
             <br>
 

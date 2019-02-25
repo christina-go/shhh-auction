@@ -3,7 +3,10 @@ import cgi
 import os
 from app import app, db
 from models import Item, Bid, User
-from helper_functions import input_validation, password_match
+from helper_functions import input_validation, password_match, allowed_file
+from werkzeug.utils import secure_filename
+
+
 
 
 @app.before_request
@@ -91,8 +94,26 @@ def new_item():
         stop = request.form['auction_end']
         description = request.form['description']
         owner_id = user.id
+        image = request.files['item_image']
 
-        new_item = Item(title, start, stop, description, owner_id)
+        #check if user folder already exists
+   
+        folders_list = os.listdir('./images/users/')
+        
+        if username in folders_list:
+            user_folder = str('./images/users/' + username)
+            
+        else:
+            user_folder = str(os.mkdir('./images/users/' + username))
+        
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            app.config.update (
+                UPLOAD_FOLDER = user_folder
+            )
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        new_item = Item(title, start, stop, description, owner_id, filename)
         db.session.add(new_item)
         db.session.commit()
 
