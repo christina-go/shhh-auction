@@ -7,8 +7,6 @@ from helper_functions import input_validation, password_match, allowed_file
 from werkzeug.utils import secure_filename
 
 
-
-
 @app.before_request
 def require_login():
     allowed_routes = ['login', 'signup']
@@ -98,13 +96,15 @@ def new_item():
 
         #check if user folder already exists
    
-        folders_list = os.listdir('./images/users/')
+        folders_list = os.listdir('./static/users/')
         
         if username in folders_list:
-            user_folder = str('./images/users/' + username)
-            
+            user_folder = str('./static/users/' + username)
+
+        #if not make folder    
+        
         else:
-            user_folder = str(os.mkdir('./images/users/' + username))
+            user_folder = str(os.mkdir('./static/users/' + username))
         
         if image and allowed_file(image.filename):
             filename = secure_filename(image.filename)

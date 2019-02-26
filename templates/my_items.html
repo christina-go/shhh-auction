@@ -11,6 +11,7 @@
 <ul>
     {% for item in items %}
     <li>Auction Title: {{item.title}}</li>
+    <li><img src="./static/users/{{item.owner.username}}/{{item.image}}" alt="auction-image"  /> </li>
     <li>Auction Start: {{item.start}}</li>
     <li>Auction Stop: {{item.stop}}</li>
     <li>Auction Description: {{item.description}}</li>
