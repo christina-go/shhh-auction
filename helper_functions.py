@@ -1,3 +1,5 @@
+from app import ALLOWED_EXTENSIONS
+
 def text_len(text):
   textLength = len(text)
 
@@ -32,5 +34,9 @@ def password_match(password, passwordConfirmation):
         return True   
 
     else:
-        return False 
+        return False
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
   

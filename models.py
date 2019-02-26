@@ -21,13 +21,15 @@ class Item(db.Model):
     description = db.Column(db.String(455))
     bids = db.relationship('Bid', backref='item-bids', lazy='dynamic')
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    image = db.Column(db.String(120))
 
-    def __init__(self, title, start, stop, description, owner_id):
+    def __init__(self, title, start, stop, description, owner_id, image):
         self.title = title
         self.start = start
         self.stop = stop
         self.description = description
         self.owner_id = owner_id
+        self.image = image
 
 
 class Bid(db.Model):
