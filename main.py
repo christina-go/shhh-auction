@@ -176,6 +176,17 @@ def list_bids():
 
             return render_template('bids.html', bids=bids, auctions_list=auctions_list)
 
+@app.route('/bid_list')
+def bid_list():
+    username = session['username']
+    item_id = request.args.get('id')    
+
+    #TODO - query Bid db using item id. pass item id to the function
+    bids = Bid.query.filter_by(item_id=item_id).all()
+    item = Item.query.filter_by(id=item_id).first()
+    
+    return render_template('bids_list.html', bids=bids, item=item)
+
 
 @app.route('/my_items')
 def my_items():
