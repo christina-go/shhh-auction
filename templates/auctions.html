@@ -2,17 +2,21 @@
 
 {% block content %}
 
-{% if all_auctions|length == 0 %}
+<section id="auction-list" class="padd-section text-center wow">
+    {% if all_auctions|length == 0 %}
+
+    <p class="display-message">No auctions yet</p>
     
-<p class="display-message">No auctions yet</p>
-
-{% else %}
-    <ul>
-        {% for auction in all_auctions %}
-        <li><a href="./auction?id={{auction.id}}"> {{auction.title}} </a></li>
-        {% endfor %}
-    </ul>   
-
-{% endif %}
+    {% else %}
+        <ul>
+            {% for auction in all_auctions %}
+            <div class="container">
+                <span><a href="./auction?id={{auction.id}}"> {{auction.title}} </a></span> <br>
+                <span><img src="../static/users/{{auction.owner.username}}/{{auction.image}}" alt="auction-image" height="300" width="300" /></span>
+            </div>
+            {% endfor %}
+        </ul>   
+    {% endif %}
+</section>
 
 {% endblock %}

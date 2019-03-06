@@ -2,24 +2,37 @@
 
 {% block content %}
 
-{% if items|length == 0 %}
+<section id="my-items" class="padd-section text-center wow">
+    <h2>My Items</h2>
+    <div class="container">
+        {% if items|length == 0 %}
     
-<p class="display-message">No items listed</p>
+        <p class="display-message">No items listed</p>
 
-{% else %}
+    </div>
 
-<ul>
-    {% for item in items %}
-    <li>Auction Title: {{item.title}}</li>
-    <li><img src="./static/users/{{item.owner.username}}/{{item.image}}" alt="auction-image"  /> </li>
-    <li>Auction Start: {{item.start}}</li>
-    <li>Auction Stop: {{item.stop}}</li>
-    <li>Auction Description: {{item.description}}</li>
-    <li><a href="./bid_list?id={{item.id}}"> See Bids </a></li>
-    <br><br>
-    {% endfor %}
-</ul>
+    {% else %}
 
-{% endif %}
+    <div class="card-deck">
+            {% for item in items %}
+            <div class="card">
+                <img src="./static/users/{{item.owner.username}}/{{item.image}}" alt="auction-image" height="200" width="200" class="rounded mx-auto d-block"/>
+                <h5>Auction Title: {{item.title}}</h5>
+                <h5>Auction Start: {{item.start}}</h5>
+                <h5>Auction Stop: {{item.stop}}</h5>
+                <h5>Auction Description: {{item.description}}</h5>
+                <h5><a href="./bids_list?id={{item.id}}"> See Bids </a></h5>
+            </div>
+
+            {% endfor %}
+
+    </div>
+
+
+    {% endif %}
+
+</section>
+
+
 
 {% endblock %}

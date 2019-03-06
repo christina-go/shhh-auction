@@ -1,24 +1,33 @@
 {% extends "wrapper.html" %}
 
 {% block content %}
-<div class="input-field">
-<p>If you don't have an account, you may <a href="/signup">sign up</a> for one</p>
-<form  action="/login" method="post">
-    <table>
-        <tr>
-            <td><label for="username">Username</label></td>
-            <td>
-                <input name="username" type="text" value="{{ username }}">
-            </td>
-        </tr>
-        <tr>
-            <td><label for="password">Password</label></td>
-            <td>
-                <input name="password" type="password">
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="Login">
-</form>
-</div>
+
+
+<section id="login" class="padd-section text-center wow">
+    <div class="container">
+        <div class="input-field">
+            <span><h2>Login</h2></span>
+            <p>If you don't have an account, you may <a href="/signup">sign up</a> for one</p>
+            <form  action="/login" method="post">
+                <table>
+                    <tr>
+                        <td><label for="username">Username</label></td>
+                        <td>
+                            <input name="username" type="text" value="{{ username }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Password</label></td>
+                        <td>
+                            <input name="password" type="password">
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</section>
+
+
 {% endblock %}

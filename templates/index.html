@@ -1,7 +1,259 @@
-{% extends 'wrapper.html'%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shhh... Be Quiet</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-{% block content %}
+  <!-- Favicons -->
+  <link href="./static/img/re-pict-gavel.png" rel="icon">
 
-<h1>Hello {{username}}</h1>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
 
-{% endblock %}
+  <!-- Bootstrap css -->
+  <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+  <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="../static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../static/lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../static/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../static/lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="../static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: eStartup
+    Theme URL: https://bootstrapmade.com/estartup-bootstrap-landing-page-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <header id="header" class="header header-hide">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="/index" class="scrollto"><span>Shhh</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="/home">Home</a></li>
+          <li><a href="/login">Login/Register</a></li>
+          <li class="menu-has-children"><a href="">Menu</a>
+            <ul>
+              <li><a href="/auctions">All Auctions</a></li>
+              <li><a href="/new_item">Start An Auction</a></li>
+              <li><a href="/my_items">My Items</a></li>
+              <li><a href="/bids">My Bids</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+
+  <!--==========================
+    Hero Section
+  ==============================-->
+
+  <section id="hero" class="wow fadeIn">
+    <div class="hero-container-fluid">
+      <div class="jumbotron-fluid hero-container">
+        <br><br><br><br>
+          <h1 class="display-4">Welcome to Shhh...Silent Auction</h1>
+          <p class="lead">An easy way to sell your items online</p>
+          <img src="../static/img/hero-img.png" alt="Hero Imgs">
+          <hr class="my-4">
+          <p></p>
+          <p class="lead">
+            <a href="/login" class="btn-get-started">Get Started</a>
+          </p>
+    </div>
+  </section><!-- #hero -->
+  
+
+  <!--==========================
+    Get Started Section
+  ============================-->
+  <section id="get-started" class="padd-section text-center wow fadeInUp">
+
+    <div class="container">
+      <div class="section-title text-center">
+
+        <h2></h2>
+        <p class="separator">Shhh... allows users to bid for your item without knowing what the current highest bid is </p>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-block">
+
+            <img src="../static/img/svg/cloud.svg" alt="img" class="img-fluid">
+            <h4>you don't need to set the price </h4>
+            <p>In a silent auction, the bidders don't know what the current bid is and will bid on their own judgement of the item's value </p>
+            <a href="#">read more</a>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-block">
+
+            <img src="../static/img/svg/paint-palette.svg" alt="img" class="img-fluid">
+            <h4>starting an auction is fast and easy </h4>
+            <p>A few clicks and an image is all it takes to get started </p>
+            <a href="#">read more</a>
+
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-block">
+
+            <img src="../static/img/svg/planet.svg" alt="img" class="img-fluid">
+            <h4>pick the highest bid at the end </h4>
+            <p>When your auction is done, you can pick the highest bid! </p>
+            <a href="#">read more</a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!--==========================
+    Testimonials Section
+  ============================-->
+
+  <section id="testimonials" class="padd-section text-center wow fadeInUp">
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+          <div class="testimonials-content">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+              <div class="carousel-inner" role="listbox">
+
+                <div class="carousel-item  active">
+                  <div class="top-top">
+
+                    <h2>A New Way to Declutter</h2>
+                    <p>"A great way to get rid of things that no longer spark joy, but still may have some market value."</p>
+                    <h4>Marie Kondo<span>author of The Life-Changing Magic of Tidying Up </span></h4>
+
+                  </div>
+                </div>
+
+                <div class="carousel-item ">
+                  <div class="top-top">
+
+                    <h2>Our Users Love the Convenience</h2>
+                    <p>"I love that the price is set by the bidders. It's one less step when I want to sell something new." </p>
+                    <h4>Tonho Earlyhuman<span>artist</span></h4>
+
+                  </div>
+                </div>
+
+                <div class="carousel-item ">
+                  <div class="top-top">
+
+                    <h2>A Different Way To Shop</h2>
+                    <p>"The fun part is that you don't know whether your bid is going to get picked until the end!" </p>
+                    <h4>Hannah G. <span>content creator</span></h4>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="btm-btm">
+
+                <ul class="list-unstyled carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ul>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+<!--==========================
+    Footer
+  ============================-->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12 col-lg-4">
+          <div class="footer-logo">
+
+            <a class="navbar-brand" href="#">Shhh... Silent Auction</a>
+            <p>Shhh... is a capstone project for LaunchCode Miami and should not be used seriously (yet)</p>
+
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="list-menu float-right">
+
+            <h4>About Us</h4>
+
+            <ul class="list-unstyled">
+              <li><a href="#">About us</a></li>
+            </ul>
+
+          </div>
+        </div>
+    </div>
+
+  </footer>
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="../static/lib/jquery/jquery.min.js"></script>
+  <script src="../static/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/lib/superfish/hoverIntent.js"></script>
+  <script src="../static/lib/superfish/superfish.min.js"></script>
+  <script src="../static/lib/easing/easing.min.js"></script>
+  <script src="../static/lib/modal-video/js/modal-video.js"></script>
+  <script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../static/lib/wow/wow.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="../static/contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="../static/js/main.js"></script>    
+</body>
+</html>

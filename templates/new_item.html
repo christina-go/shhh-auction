@@ -1,55 +1,57 @@
 {% extends 'wrapper.html'%}
 
 {% block content %}
-<div class="input-field">
-    <form method='post' action='/new_item' enctype="multipart/form-data" >
-        <div class="form-group">
-            <div>
-                <label>
-                    Title:
-                    <input class="form-control" type="text" name='title' required/>
-                </label>
-            </div>
-            <br>
-            <div>
-                <label class='input_field'>
-                    Auction Start:
-                        <input class='form-control' name='auction_start' type='datetime-local' required/>
-                </label>
-            </div>
-            <br>
-            <div>
-                <label class='input_field'>
-                    Auction End:
-                        <input class='form-control' name='auction_end' type='datetime-local' required/>
-                </label>
-            </div>
-            <br>
-            <div>
-                <label class='input_field'>
-                    Description:
-                    <textArea class="form-control" rows="5" cols="100" name='description' required></textArea>
-                </label>
-            </div>
-            <br>
-            <div>
-                <label>
-                    Please upload an image:
-                </label>
-            </div>   
-            <br>
-            <div>
-                <input type='file' name='item_image' accept='image/png, image/jpeg'/>
-            </div>   
-            <br>
 
-            <div>
-                <label class="input_field">
-                    <input class="btn btn-default" type="submit" value='Create Auction'  />
-                </label>
+<section id="new-item" class="padd-section text-center wow">
+    <h3>Start a New Auction</h3>
+    <div class="input-field container">
+        <form method='post' action='/new_item' enctype="multipart/form-data">
+            <div class="form-group">
+                <div>
+                    <label>
+                        Title:
+                            <input class="form-control" type="text" name='title' required/>
+                    </label>
+                </div>
+                <br>
+                <div>
+                    <label class='input_field'>
+                        Auction Start:
+                            <input class='form-control' name='auction_start' type='datetime-local' required/>
+                    </label>
+                </div>
+                <br>
+                <div>
+                    <label class='input_field'>
+                        Auction End:
+                            <input class='form-control' name='auction_end' type='datetime-local' required/>
+                    </label>
+                </div>
+                <br>
+                <div>
+                    <label class='input_field'>
+                        Description:
+                        <textArea class="form-control" rows="5" cols="100" name='description' required></textArea>
+                    </label>
+                </div>
+                <br>
+                <div>
+                    <label>
+                        Please upload an image:
+                    </label>
+                </div>   
+                <br>
+                <div>
+                    <input type='file' name='item_image' accept='image/png, image/jpeg'/>
+                </div>   
+                <br>
+                <div>
+                    <input class="btn btn-primary" type="submit" value='Create Auction'  />
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+</section>
+
 
 {% endblock %}

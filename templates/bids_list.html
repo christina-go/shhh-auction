@@ -2,21 +2,29 @@
 
 {% block content %}
 
-{% if bids|length == 0 %}
-    
-<p class="display-message">No bids placed</p>
+<section id="bids-list" class="padd-section text-center wow">
+    <h2>Bid List</h2>
+    {% if bids|length == 0 %}
+    <div class="container"> 
+        <p class="display-message">No bids placed</p>
+    </div>
+        
+        {% else %}
+        <div class="container">
+            <h3> {{item.title}} </h3>
+            <form action='/winner'>
+                <ul>
+                    {% for bid in bids %}
+                    <p>{{bid.amount}} by {{bid.owner.username}}</p> 
+                    <input type="submit" class="button btn-primary btn-sm" value="Pick Winning Bid" />
+                    <input type="hidden" value={{bid.owner.id}} name="bid_owner_id"/>
+                    {% endfor %}
+                </ul>
+            </form>
+        </div>
 
-{% else %}
+    {% endif %}
+</section>
 
-    <h3> {{item.title}} </h3>
-
-    <ul>
-        {% for bid in bids %}
-        <li> {{bid.amount}} by {{bid.owner.username}} </li>
-        {% endfor %}
-    </ul>
-
-
-{% endif %}
 
 {% endblock %}

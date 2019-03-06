@@ -1,76 +1,67 @@
-<!doctype HTML>
-<html>
-    <head>
-        <link href="./static/styles.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-        <style>
-        .navigation-left {
-            align-content: left;
-            display: inline-block;
-            margin: 10px;   
-        }
-        .navigation-right {
-            float: right;                
-            display: inline-block;
-            margin: 10px;   
-        }
-        .input-field {
-            margin: 50px;
-            display: block;
-            padding-top: 20px;
-            text-align: left;
-            box-flex: auto;
-        }
-        h1 {
-            text-align: center;
-        }
-        .error {
-            list-style: none;
-            color: red;
-        }
-        ul {
-            list-style: none;
-        }
-        h2 {
-            font-weight: bold;
-        }
-        .byline {
-            font-style:italic;
-        }
-        .display_message {
-            margin: 50px;
-        }
-        </style>
-        <title>{{title}}</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Shhh... Be Quiet</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-    </head>
-    <body>
-    <div class="navigation-left" >
-        <a href='/index'>Home</a>
-    </div>
-    <div class="navigation-left" >
-        <a href='/auctions'>All Auctions</a>
-    </div>
-    <div class="navigation-left" >
-        <a href='/new_item'>List an Item</a>
-    </div>
-    <div class="navigation-left" >
-        <a href='/bids'>My Bids</a>
-    </div>
-    <div class="navigation-left" >
-        <a href='/my_items'>My Items</a>
-    </div>
-    <div class="navigation-right" >
-        <a href='/logout'>Log Out</a>
-    </div>
-    <div class="navigation-right" >
-        <a href='/login'>Log In</a>
-    </div> 
-    
+  <!-- Favicons -->
+  <link href="./static/img/re-pict-gavel.png" rel="icon">
 
-<div>
-    <h1 class="page-title">{{title}}</h1>
-</div>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
+
+  <!-- Bootstrap css -->
+  <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+  <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="../static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../static/lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
+  <link href="../static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../static/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../static/lib/modal-video/css/modal-video.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="../static/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: eStartup
+    Theme URL: https://bootstrapmade.com/estartup-bootstrap-landing-page-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <header id="header" class="header header-hide">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="/index" class="scrollto"><span>Shhh</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="/home">Home</a></li>
+          <li><a href="/login">Login/Register</a></li>
+          <li class="menu-has-children"><a href="">Menu</a>
+            <ul>
+              <li><a href="/auctions">All Auctions</a></li>
+              <li><a href="/new_item">Start An Auction</a></li>
+              <li><a href="/my_items">My Items</a></li>
+              <li><a href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
 
     {% with messages = get_flashed_messages() %}
         <ul>
@@ -83,5 +74,25 @@
     {% block content %}
     {% endblock %}
 
-</body>
+    
+    
+    
+      <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    
+      <!-- JavaScript Libraries -->
+      <script src="../static/lib/jquery/jquery.min.js"></script>
+      <script src="../static/lib/jquery/jquery-migrate.min.js"></script>
+      <script src="../static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="../static/lib/superfish/hoverIntent.js"></script>
+      <script src="../static/lib/superfish/superfish.min.js"></script>
+      <script src="../static/lib/easing/easing.min.js"></script>
+      <script src="../static/lib/modal-video/js/modal-video.js"></script>
+      <script src="../static/lib/owlcarousel/owl.carousel.min.js"></script>
+      <script src="../static/lib/wow/wow.min.js"></script>
+      <!-- Contact Form JavaScript File -->
+      <script src="../static/contactform/contactform.js"></script>
+    
+      <!-- Template Main Javascript File -->
+      <script src="../static/js/main.js"></script>    
+    </body>
 </html>
