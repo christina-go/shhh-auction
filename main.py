@@ -3,26 +3,37 @@ import cgi
 import os
 from app import app, db
 from models import Item, Bid, User
-from helper_functions import input_validation, password_match
+from helper_functions import input_validation, password_match, allowed_file
+from werkzeug.utils import secure_filename
 
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'signup']
+    allowed_routes = ['login', 'signup', 'index']
     if request.endpoint not in allowed_routes and 'username' not in session:
         flash("You must be logged in to continue")
         return redirect('/login')
 
+
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 @app.route('/')
 def redirect_index():
     return redirect('/index')
 
 
-@app.route('/index')
-def index():
+@app.route('/home')
+def home():
     username = session['username']
-    return render_template('index.html', username=username)    
+    user = User.query.filter_by(username=username).first()
+    bids = Bid.query.filter_by(owner_id=user.id).all()
+    items = Item.query.filter_by(owner_id=user.id).all()
+
+    all_auctions = Item.query.all()
+
+    return render_template('home.html', username=username, user=user, bids=bids, items=items, all_auctions=all_auctions)    
 
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -40,7 +51,7 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
                 session['username'] = username
-                return redirect('/index')
+                return redirect('/home')
 
             else:
                 flash("User already exists")
@@ -74,8 +85,7 @@ def login():
 
         if user and user.password == password:
             session['username'] = username
-            flash("Logged in")
-            return redirect('/index')
+            return redirect('/home')
 
     return render_template('login.html', title="Log In to Shhh")     
 
@@ -91,8 +101,28 @@ def new_item():
         stop = request.form['auction_end']
         description = request.form['description']
         owner_id = user.id
+        image = request.files['item_image']
 
-        new_item = Item(title, start, stop, description, owner_id)
+        #check if user folder already exists
+   
+        folders_list = os.listdir('./static/users/')
+        
+        if username in folders_list:
+            user_folder = str('./static/users/' + username)
+
+        #if not make folder    
+        
+        else:
+            user_folder = str(os.mkdir('./static/users/' + username))
+        
+        if image and allowed_file(image.filename):
+            filename = secure_filename(image.filename)
+            app.config.update (
+                UPLOAD_FOLDER = user_folder
+            )
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        new_item = Item(title, start, stop, description, owner_id, filename)
         db.session.add(new_item)
         db.session.commit()
 
@@ -115,7 +145,7 @@ def single_auction():
 
     if request.method == 'POST':
         amount = request.form['bid_amount']
-        item_id = request.form['item-id']
+        item_id = request.form['item_id']
         owner_id = user.id
 
         new_bid = Bid(amount, item_id, owner_id)
@@ -134,27 +164,24 @@ def single_auction():
     return render_template('auction.html', item=item)
 
 
-@app.route('/bids')
-def list_bids():
+
+@app.route('/bids_list', methods=['POST', 'GET'])
+def bid_list():
     username = session['username']
-    user = User.query.filter_by(username=username).first()
+    item_id = request.args.get('id')
+
+    #TODO - query Bid db using item id. pass item id to the function
+    bids = Bid.query.filter_by(item_id=item_id).all()
+    item = Item.query.filter_by(id=item_id).first()
     
-    bids = Bid.query.filter_by(owner_id=user.id).all()
+    return render_template('bids_list.html', bids=bids, item=item)
 
-    if not bids:
-       bids == 0
-       return render_template('bids.html', bids=bids)
+@app.route('/winner')
+def winner():
+    winning_bid = request.args.get('bid_owner_id')
+    auction_winner = User.query.filter_by(id=winning_bid).first()
 
-    else:  
-        for bid in bids:
-            auctions = Item.query.filter_by(id=bid.item_id)
-
-            for auction in auctions:
-                auctions_list = []
-                auctions_list.append(auction.title)
-
-            return render_template('bids.html', bids=bids, auctions_list=auctions_list)
-
+    return render_template('winner.html', auction_winner=auction_winner)
 
 @app.route('/my_items')
 def my_items():

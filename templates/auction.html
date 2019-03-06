@@ -3,17 +3,22 @@
 
 
 {% block content %}
-
-    <ul>
+<section id="auction" class="padd-section text-center wow">
+    <div class="container">
         <form action="/auction", method="POST">
-            <li><h2>{{item.title}}</h2></li>
-            <p>Auction Start: {{item.start}}</p>
-            <p>Auction Stop: {{item.stop}}</p>
-            <p>seller: <a href="./seller?id={{item.owner.id}}"> {{item.owner.username}}</a></p>
+            <h2>{{item.title}}</h2>
+            <img src="../static/users/{{item.owner.username}}/{{item.image}}" alt="auction-image" height="200" width="200" />
+            <p>Start: {{item.start}}</p>
+            <p>Stop: {{item.stop}}</p>
+            <p>Description: {{item.description}}</p>
+            <p>seller: <a href="../seller?id={{item.owner.id}}"> {{item.owner.username}}</a></p>
             <p><input type="text" name="bid_amount"></p>
             <p><input type="submit" value="Place a bid"></p>
-            <input type="hidden" name="item-id" value="{{item.id}}" />
+            <input type="hidden" name="item_id" value="{{item.id}}" />
         </form>
-    </ul>
+    </div>
+</section>
+ 
+
 
 {% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'wrapper.html' %}
+
+{% block content %}
+<section id="home" class="padd-section text-center wow">
+    <div class="container">
+        <span><h2>Welcome {{ username }}</h2></span>
+    </div>
+
+    <div class="container" id="auctions">
+        <h3>Live Auctions</h3>
+        {% if all_auctions|length == 0 %}
+    
+            <p class="display-message">No live auctions</p>
+        
+        
+        {% else %}
+
+        <div class="card-deck">
+
+            {% for auction in all_auctions %}
+
+        
+            <div class="card">
+                <img src="./static/users/{{auction.owner.username}}/{{auction.image}}" alt="auction-image" height="200" width="200" class="rounded mx-auto d-block" />
+                <div class="card-body">
+                <h5 class="card-title">{{ auction.title }}</h5>
+                <a href="./auction?id={{auction.id}}" class="button btn-primary btn-sm">View Auction </a>
+            </div>
+
+
+        </div>
+
+            {% endfor %}
+         
+        {% endif %}
+    </div>
+
+    <div class="card-deck" id="my-bids">
+        <div class="card">
+            <h3>My Bids</h3>
+
+            {% if bids|length == 0 %}
+
+            <p class="display-message">No bids placed</p>
+        </div>
+        <div class="card">
+            {% else %}
+
+                {% for bid in bids %}
+                    <a href="./auction?id={{bid.item_id}}">{{bid.amount}}</a>
+                {% endfor %}
+        
+            {% endif %}
+
+        </div>
+
+        <div class="card invisible">
+
+        </div>
+
+        <div class="card">
+            <h3>My Items</h3>
+            {% if items|length == 0 %}
+    
+            <p class="display-message">No items listed</p>
+
+            {% else %}
+
+                {% for item in items %}
+                    <img src="./static/users/{{item.owner.username}}/{{item.image}}" alt="auction-image" height="200" width="200" class="rounded mx-auto d-block" /> 
+                    <h5>Auction Title: {{item.title}}</h5>
+                    <h5>Auction Start: {{item.start}}</h5>
+                    <h5>Auction Stop: {{item.stop}}</h5>
+                    <h5>Auction Description: {{item.description}}</h5>
+                    <a href="./bids_list?id={{item.id}}"> See Bids </a>            
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+    </div>
+
+</section>
+
+{% endblock %}

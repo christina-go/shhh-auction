@@ -1,7 +1,7 @@
 from app import app, db
+from datetime import datetime
 
 class User(db.Model):
-
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(120))
@@ -14,28 +14,28 @@ class User(db.Model):
 
 
 class Item(db.Model):
-
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
-    start = db.Column(db.String(120))
-    stop = db.Column(db.String(120))
+    start = db.Column(db.DateTime, nullable = False)
+    stop = db.Column(db.DateTime, nullable = False)
     description = db.Column(db.String(455))
     bids = db.relationship('Bid', backref='item-bids', lazy='dynamic')
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    image = db.Column(db.String(120))
 
-    def __init__(self, title, start, stop, description, owner_id):
+    def __init__(self, title, start, stop, description, owner_id, image):
         self.title = title
         self.start = start
         self.stop = stop
         self.description = description
         self.owner_id = owner_id
+        self.image = image
 
 
 class Bid(db.Model):
-
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer)
-    item_id = db.Column(db.Integer, db.ForeignKey('item.title'))
+    item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, amount, item_id, owner_id):
