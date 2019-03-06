@@ -1,29 +1,37 @@
 {% extends "wrapper.html" %}
 
 {% block content %}
-<div class="input-field">
-    <form action="/signup" method="post">
-        <table>
-            <tr>
-                <td><label for="username">Username</label></td>
-                <td>
-                    <input name="username" type="username" value="{{ username }}" required>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="password">Password</label></td>
-                <td>
-                    <input name="password" type="password" required>
-                </td>
-            </tr>
-            <tr>
-                <td><label for="verify">Verify Password</label></td>
-                <td>
-                    <input name="verify" type="password" required>
-                </td>
-            </tr>
-        </table>
-        <input type="submit" value="Sign Up for Shhh">
-    </form>
-</div>
+<section id="signup" class="padd-section text-center wow">
+    <div class="input-field container">
+        <span><h2>Register</h2></span>
+        <form action="/signup" method="post">
+            <div class="form-group">
+                <table>
+                        <tr>
+                            <td><label for="username">Username</label></td>
+                            <td>
+                                <input class="form-control" name="username" type="username" value="{{ username }}" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="password">Password</label></td>
+                            <td>
+                                <input class="form-control" name="password" type="password" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="verify">Verify Password</label></td>
+                            <td>
+                                <input class="form-control" name="verify" type="password" required>
+                            </td>
+                        </tr>
+                    </table>
+                <input type="submit" value="Sign Up for Shhh">
+            </div>
+
+        </form>
+    </div>
+
+</section>
+
 {% endblock %}

@@ -2,17 +2,23 @@
 
 {% block content %}
 
-{% if all_auctions|length == 0 %}
+<section id="all-auctions" class="padd-section text-center wow">
+    <div class="container">
+        {% if all_auctions|length == 0 %}
     
-<p class="display-message">No live auctions</p>
+        <p class="display-message">No live auctions</p>
+    </div>
 
-{% else %}
-    <ul>
-        {% for auction in all_auctions %}
-        <li><a href="./auction?id={{auction.id}}"> {{auction.title}} </a></li>
-        {% endfor %}
-    </ul>   
-
-{% endif %}
+    {% else %}
+    <div class="container">
+        <ul>
+            {% for auction in all_auctions %}
+            <li><a href="./auction?id={{auction.id}}"> {{auction.title}} </a></li>
+            {% endfor %}
+        </ul>  
+    </div>
+ 
+        {% endif %}
+</section>
 
 {% endblock %}

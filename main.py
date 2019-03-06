@@ -9,21 +9,31 @@ from werkzeug.utils import secure_filename
 
 @app.before_request
 def require_login():
-    allowed_routes = ['login', 'signup']
+    allowed_routes = ['login', 'signup', 'index']
     if request.endpoint not in allowed_routes and 'username' not in session:
         flash("You must be logged in to continue")
         return redirect('/login')
 
+
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 @app.route('/')
 def redirect_index():
     return redirect('/index')
 
 
-@app.route('/index')
-def index():
+@app.route('/home')
+def home():
     username = session['username']
-    return render_template('index.html', username=username)    
+    user = User.query.filter_by(username=username).first()
+    bids = Bid.query.filter_by(owner_id=user.id).all()
+    items = Item.query.filter_by(owner_id=user.id).all()
+
+    all_auctions = Item.query.all()
+
+    return render_template('home.html', username=username, user=user, bids=bids, items=items, all_auctions=all_auctions)    
 
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -41,7 +51,7 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
                 session['username'] = username
-                return redirect('/index')
+                return redirect('/home')
 
             else:
                 flash("User already exists")
@@ -75,8 +85,7 @@ def login():
 
         if user and user.password == password:
             session['username'] = username
-            flash("Logged in")
-            return redirect('/index')
+            return redirect('/home')
 
     return render_template('login.html', title="Log In to Shhh")     
 
@@ -155,31 +164,11 @@ def single_auction():
     return render_template('auction.html', item=item)
 
 
-@app.route('/bids')
-def list_bids():
-    username = session['username']
-    user = User.query.filter_by(username=username).first()
-    
-    bids = Bid.query.filter_by(owner_id=user.id).all()
 
-    if not bids:
-       bids == 0
-       return render_template('bids.html', bids=bids)
-
-    else:  
-        for bid in bids:
-            auctions = Item.query.filter_by(id=bid.item_id)
-
-            for auction in auctions:
-                auctions_list = []
-                auctions_list.append(auction.title)
-
-            return render_template('bids.html', bids=bids, auctions_list=auctions_list)
-
-@app.route('/bid_list')
+@app.route('/bids_list', methods=['POST', 'GET'])
 def bid_list():
     username = session['username']
-    item_id = request.args.get('id')    
+    item_id = request.args.get('id')
 
     #TODO - query Bid db using item id. pass item id to the function
     bids = Bid.query.filter_by(item_id=item_id).all()
@@ -187,6 +176,12 @@ def bid_list():
     
     return render_template('bids_list.html', bids=bids, item=item)
 
+@app.route('/winner')
+def winner():
+    winning_bid = request.args.get('bid_owner_id')
+    auction_winner = User.query.filter_by(id=winning_bid).first()
+
+    return render_template('winner.html', auction_winner=auction_winner)
 
 @app.route('/my_items')
 def my_items():
