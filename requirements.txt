@@ -5,7 +5,3 @@ flask_sqlalchemy
 pymysql
 psycopg2
 JavaScript
-Bootstrap
-CSS
-SASS
-HTML
